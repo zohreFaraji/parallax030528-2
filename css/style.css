@@ -1,0 +1,277 @@
+@import url('https://fonts.googleapis.com/css2?family=Karantina:wght@300;400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    font-family: Poppins;
+    color: #1E1E1E;
+    background-color: #CDCDCD;
+    background-image:
+        repeating-linear-gradient(to right, transparent 0 150px, #0001 150px 151px),
+        repeating-linear-gradient(to bottom, transparent 0 150px, #0001 150px 151px),
+        linear-gradient(to right, #CDCDCDcc, #CDCDCDcc),
+        url(../img/bg.jpg);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    width: min(1200px, 90vw);
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 50px;
+    height: 0px;
+    flex-wrap: wrap;
+
+    >h1 {
+        font-family: "Karantina", system-ui;
+        font-size: 16vw;
+        line-height: 0.8em;
+    }
+}
+
+.banner {
+    margin-top: -50px;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.product {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 170px;
+    z-index: 2;
+    width: 500px;
+    transition: 0.7s;
+
+    >.soda {
+        position: absolute;
+        bottom: 0;
+        left: calc(50%);
+        transform: translateX(-50%);
+    }
+
+
+    &:hover {
+        bottom: 300px;
+    }
+
+    &:hover .soda:nth-child(2) {
+        opacity: 1;
+        --left: 500px;
+    }
+
+    &:hover .soda:nth-child(1) {
+        opacity: 0;
+        --left: 500px;
+    }
+}
+
+.soda {
+    --left: 0px;
+    background:
+        var(--url) var(--left),
+        url(../img/mockup.png) 0 0;
+    background-size: auto 100%;
+    width: 280px;
+    aspect-ratio: 2 / 4;
+    background-blend-mode: multiply;
+    transition: 0.8s;
+    mask-image: url(../img/mockup.png);
+    mask-size: auto 100%;
+
+    &:nth-child(2) {
+        opacity: 0;
+    }
+}
+
+.rock {
+    position: absolute;
+    inset: 0 0 0 0;
+    width: 100%;
+    pointer-events: none;
+
+    >img {
+        &:nth-child(1) {
+            position: absolute;
+            height: 170px;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 30px;
+            transition: 0.7s;
+            z-index: 1;
+        }
+
+        &:nth-child(2) {
+            position: absolute;
+            height: 50%;
+            left: 0;
+            bottom: 0;
+            transition: 0.7s;
+        }
+
+        &:nth-child(3) {
+            position: absolute;
+            height: 100%;
+            right: 0;
+            bottom: -100px;
+            rotate: -25deg;
+            transition: 0.7s;
+        }
+    }
+}
+
+.banner:has(.product:hover) .rock img:nth-child(1) {
+    transform: translateX(-50%) translateY(50px);
+}
+
+.banner:has(.product:hover) .rock img:nth-child(2) {
+    transform: translateX(-100px) translateY(100px);
+}
+
+.banner:has(.product:hover) .rock img:nth-child(3) {
+    transform: translateX(100px) translateY(100px);
+}
+
+@media screen and (max-width: 1023px) {
+
+    .soda {
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .soda {
+        width: 250px;
+    }
+
+    header img {
+        display: none;
+    }
+
+}
+
+/* start bottomFixedImage */
+.bottomImage {
+    position: absolute;
+    bottom: 20px;
+    right: 5px;
+    width: 200px;
+    height: 110px;
+
+    >.imgFixed {
+        width: 90px;
+        height: 90px;
+        position: fixed;
+        bottom: 33px;
+        right: 40px;
+        z-index: 1000;
+        animation: anime5 1.5s infinite alternate;
+
+        >img {
+            width: 110%;
+            height: 110%;
+            border: 6px solid rgba(54, 54, 54, 0.062);
+            animation: anime1 3s infinite alternate;
+            transform: rotate(15deg);
+            object-fit: cover;
+            border-radius: 50%;
+            position: relative;
+            z-index: 999;
+            transition: all .6s ease-in-out;
+            box-shadow: 4px 5px 6px 5px #ff3344;
+
+            &:hover {
+                cursor: pointer;
+                transform: perspective(700px) rotateY(10deg);
+            }
+        }
+
+        >a {
+            width: 40px;
+            height: 40px;
+            z-index: 998;
+            position: fixed;
+            bottom: 50px;
+            right: 38px;
+            transition: all 1s ease-in-out;
+            border: 2px solid #ff4151;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.616);
+
+            >i {
+                color: black;
+                font-size: 20px;
+            }
+
+            &:hover {
+                transform: scale(1.05);
+                background-color: #ff4151;
+                border: 3px solid #e2e1e1;
+
+                filter: hue-rotate(40%) brightness(110%) contrast(120%);
+
+                >i {
+                    color: white;
+                }
+            }
+        }
+    }
+
+    &:hover>.imgFixed>a {
+
+        &:nth-of-type(1) {
+            bottom: -4px;
+            right: 110px;
+        }
+
+        &:nth-of-type(2) {
+            bottom: 43px;
+            right: 110px;
+        }
+
+        &:nth-of-type(3) {
+
+            bottom: 90px;
+            right: 110px;
+        }
+    }
+}
+
+@keyframes anime1 {
+    0% {
+        border-radius: 20px;
+        border: 2px solid #b6464f;
+    }
+
+    33% {
+        border-radius: 20px;
+        border: 2px solid #cc434f;
+    }
+
+    100% {
+        border-radius: 20px;
+        border: 2px solid #ff3748;
+    }
+}
+
+@keyframes anime5 {
+    0% {
+        transform: scale(0.9);
+    }
+
+    100% {
+        transform: scale(1.01);
+    }
+}
+
+/* end bottomFixedImage */
